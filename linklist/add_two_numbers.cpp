@@ -11,6 +11,25 @@ struct ListNode {
 
 class Solution {
 public:
+    ListNode* addTwoNumbersSimplify(ListNode* l1, ListNode* l2) {
+        int carry = 0;
+        ListNode *dummy = new ListNode(0);
+        ListNode *cur = dummy;
+        while(l1 || l2 || carry != 0) {
+            int num1 = (l1 != nullptr)? l1->val:0;
+            int num2 = (l2 != nullptr)? l2->val:0;
+            int value = num1 + num2 + carry;
+            ListNode *new_node = new ListNode((value)%10);
+            carry = (value > 9)? 1:0;
+            cur-> next = new_node;
+            l1 = (l1 != nullptr)? l1-> next:nullptr;
+            l2 = (l2 != nullptr)? l2-> next:nullptr;
+            cur = cur-> next;
+        }
+        return dummy-> next;
+        
+    }
+
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         int carry = 0;
         ListNode *dummy = new ListNode(0);
@@ -76,7 +95,7 @@ int main() {
     Solution solution;
 
     // Add two numbers represented by l1 and l2
-    ListNode* result = solution.addTwoNumbers(l1, l2);
+    ListNode* result = solution.addTwoNumbersSimplify(l1, l2);
 
     // Print the result list
     std::cout << "Result list: ";
