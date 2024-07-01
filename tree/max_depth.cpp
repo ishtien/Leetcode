@@ -24,6 +24,11 @@ public:
         int right = countDepth(root->right, depth + 1);
         return max(left, right);
     }
+
+    int maxDepthModify(TreeNode* root) {
+        if (root == nullptr) return 0;
+        return 1 + max(maxDepthModify(root->left), maxDepthModify(root->right));
+    }
 };
 
 // Function to perform level order traversal and print the tree
@@ -59,7 +64,7 @@ int main() {
     cout << "Original Tree (Level Order):" << endl;
     levelOrderTraversal(root);
 
-    int depth = solution.maxDepth(root);
+    int depth = solution.maxDepthModify(root);
     cout << "\nMax Depth of the Tree: " << depth << endl;
 
     return 0;
