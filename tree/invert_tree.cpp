@@ -19,6 +19,16 @@ public:
         return root;
     }
 
+    TreeNode* invertTreeModify(TreeNode* root) {
+        if(root == nullptr) return nullptr;
+
+        TreeNode* node = new TreeNode(root->val);
+        node -> left = invertTree(root->right);
+        node -> right = invertTree(root->left);
+        
+        return node;
+    }
+
     void traverse(TreeNode* root) {
         if (!root) return;
         TreeNode* left_subtree = root->left;
@@ -65,7 +75,7 @@ int main() {
     cout << "Original Tree (Level Order):" << endl;
     solution.levelOrderTraversal(root);
     
-    TreeNode* invertedRoot = solution.invertTree(root);
+    TreeNode* invertedRoot = solution.invertTreeModify(root);
 
     cout << "\nInverted Tree (Level Order):" << endl;
     solution.levelOrderTraversal(invertedRoot);
