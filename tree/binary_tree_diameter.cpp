@@ -19,17 +19,14 @@ public:
         return res;
     }
     
-    void maxlength(TreeNode* root, int& res) {
-        if (root == nullptr) return;
-        maxlength(root->left, res);
-        maxlength(root->right, res);
-        res = max(res, dep(root->left) + dep(root->right));
+    int maxlength(TreeNode* root, int& res) {
+        if (root == nullptr) return 0;
+        int left = maxlength(root->left, res);
+        int right = maxlength(root->right, res);
+        res = max(res, left + right);
+        return 1 + max(left, right);
     }
     
-    int dep(TreeNode* root) {
-        if (root == nullptr) return 0;
-        return 1 + max(dep(root->left), dep(root->right));
-    }
 };
 
 // Example usage in main function
