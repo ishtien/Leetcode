@@ -26,11 +26,11 @@ public:
             hascycle = true;
             return;
         }
+        visited[idx] = true;
         for(auto &node : graph[idx]) {
-            visited[idx] = true;
-            traverse(node, graph, visited, hascycle);
-            visited[idx] = false;
+            traverse(node, graph, visited, hascycle);   
         }
+        visited[idx] = false;
         return;
     }
 };
