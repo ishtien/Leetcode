@@ -2,34 +2,14 @@
 #include <vector>
 using namespace std;
 
-class SolutionModify {
-public:
-    bool canJump(std::vector<int>& nums) {
-        int n = nums.size();
-        int maxReach = 0; // Track the farthest reachable index
-
-        for (int i = 0; i < n; ++i) {
-            if (i > maxReach) {
-                return false; // If current index is beyond the farthest reachable index
-            }
-            maxReach = std::max(maxReach, i + nums[i]); // Update the farthest reachable index
-            if (maxReach >= n - 1) {
-                return true; // If we can reach or surpass the last index
-            }
-        }
-
-        return false; // If we exit the loop without reaching the last index
-    }
-};
-
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
-        if(nums.empty()) return true;
-        int idx = 0;
-        while(idx < nums.size()-1) {
-            if(nums[idx] == 0) return false;
-            idx = idx + nums[idx];
+        if(nums.empty()) return 0;
+        int reachDistance = nums[0];
+        for(int i = 0; i < nums.size(); i++) {
+            if(reachDistance < i) return false;
+            reachDistance = max(reachDistance, i + nums[i]);
         }
         return true;
     }
