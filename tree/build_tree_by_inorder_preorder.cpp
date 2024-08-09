@@ -21,7 +21,6 @@ public:
     TreeNode* buildHelper(vector<int>& pre_cur, vector<int>& cur) {
         
         if(cur.size() == 0) return nullptr;
-        // cout << pre_cur.size();
         int value = pre_cur[0];
         TreeNode* root = new TreeNode(value);
 
@@ -53,33 +52,6 @@ public:
     }
 };
 
-// class Solution {
-// public:
-//     TreeNode* buildTree(std::vector<int>& preorder, std::vector<int>& inorder) {
-//         return buildHelper(preorder, inorder);
-//     }
-
-//     TreeNode* buildHelper(std::vector<int>& pre_cur, std::vector<int>& cur) {
-//         if (cur.size() == 0) return nullptr;
-//         int value = pre_cur[0];
-//         TreeNode* root = new TreeNode(value);
-
-//         auto it = std::find(cur.begin(), cur.end(), value);
-//         int copy_left = std::distance(cur.begin(), it);
-//         std::vector<int> left(cur.begin(), it);
-
-//         int copy_right = std::distance(it, cur.end());
-//         std::vector<int> right(it + 1, cur.end());
-
-//         std::vector<int> pre_cur_left(pre_cur.begin() + 1, pre_cur.begin() + 1 + copy_left);
-//         std::vector<int> pre_cur_right(pre_cur.begin() + 1 + copy_left, pre_cur.end());
-
-//         root->left = buildHelper(pre_cur_left, left);
-//         root->right = buildHelper(pre_cur_right, right);
-//         return root;
-//     }
-// };
-
 // Utility function to print the inorder traversal of a binary tree
 void printInorder(TreeNode* root) {
     if (root) {
@@ -92,8 +64,6 @@ void printInorder(TreeNode* root) {
 int main() {
     std::vector<int> preorder = {1, 2, 3, 4};
     std::vector<int> inorder = {2, 1, 3, 4};
-    // std::vector<int> preorder = {1, 2};
-    // std::vector<int> inorder = {2, 1};
 
     Solution solution;
     TreeNode* root = solution.buildTree(preorder, inorder);
